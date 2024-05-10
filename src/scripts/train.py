@@ -19,7 +19,7 @@ from src.utils import (PerceptualLoss, display_images_and_save_pdf,
 
 tqdm.pandas()
 
-os.environ["WANDB_PROJECT"] = "codec_ITMO"
+os.environ["WANDB_PROJECT"] = "teorinflab"
 
 import os
 
