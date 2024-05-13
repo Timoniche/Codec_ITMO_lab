@@ -1,7 +1,5 @@
 import torch
 import torch.nn as nn
-from compressai.entropy_models import EntropyBottleneck
-from compressai.layers import GDN
 
 from src.modeling.base import BaseModel
 
