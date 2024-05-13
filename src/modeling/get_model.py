@@ -1,4 +1,4 @@
-from modeling.ddulaev_ae import DDulaevAutoEncoder
+from src.modeling.ddulaev_ae import DDulaevAutoEncoder
 from src.modeling.base_ae import BaseAutoEncoder
 from src.modeling.ln_gelu_ae import LNAutoEncoder
 from src.modeling.xavier_ln_gelu_ae import XAvierLNAutoEncoder

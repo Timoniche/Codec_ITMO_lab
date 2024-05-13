@@ -132,8 +132,11 @@ def main(config_file):
                 args_config["training_args"]["output_dir"],
                 args_config["training_args"]["run_name"],
             )
-            save_dir = f"epoch_{epoch}"
-            model.save(directory=os.path.join(output_dir, save_dir))
+            save_file_name = f"epoch_{epoch}"
+            save_dir = os.path.join(output_dir, save_file_name)
+
+            logger.info(f"Saving model to dir: {str(save_dir)}")
+            model.save(directory=save_dir)
 
     wandb.finish()
     logger.info("***** Training finished *****")
