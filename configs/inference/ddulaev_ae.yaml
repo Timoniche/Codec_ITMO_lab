@@ -1,0 +1,12 @@
+model:
+  type: ddulaev_ae
+  model_name: ddulaev_ae
+  model_kwargs:
+
+data_path: ./test
+
+seed: 42
+model_dir: ./artifacts/ddulaev_ae-b_2-lr_3e04/epoch_2999
+batch_size: 64
+output_filename: ./artifacts/ddulaev_ae-b_2-lr_3e04/epoch_2999/ddulaev_ae-b_2-lr_3e04.pdf
+b: 2

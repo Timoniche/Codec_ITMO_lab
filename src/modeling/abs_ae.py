@@ -11,29 +11,6 @@ w_out = (w_in - K + 2P) // S + 1
 '''
 
 
-class SpatiallySeparableConvBlock(nn.Module):
-    def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size,
-            padding,
-    ):
-        super(SpatiallySeparableConvBlock, self).__init__()
-        self.conv_1xn = nn.Conv2d(in_channels, in_channels, kernel_size=(1, kernel_size), padding=(0, padding))
-        self.conv_nx1 = nn.Conv2d(in_channels, out_channels, kernel_size=(kernel_size, 1), padding=(padding, 0))
-        self.activation = nn.ReLU()
-        self.pool = nn.MaxPool2d(2)
-
-    def forward(self, x):
-        x = self.conv_1xn(x)
-        x = self.conv_nx1(x)
-        x = self.activation(x)
-        x = self.pool(x)
-
-        return x
-
-
 class ConvBlock(nn.Module):
     def __init__(
             self,
@@ -44,7 +21,7 @@ class ConvBlock(nn.Module):
     ):
         super(ConvBlock, self).__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, padding=padding)
-        self.activation = nn.ReLU()
+        self.activation = ABS()
         self.pool = nn.MaxPool2d(2)
 
     def forward(self, x):
@@ -55,11 +32,20 @@ class ConvBlock(nn.Module):
         return x
 
 
-class DDulaevAutoEncoder(BaseModel):
-    def __init__(self, model_name='ddulaev_auto_encoder'):
-        super(DDulaevAutoEncoder, self).__init__(model_name)
+class ABS(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+    # noinspection PyMethodMayBeStatic
+    def forward(self, x):
+        return torch.abs(x)
+
+
+class AbsAutoEncoder(BaseModel):
+    def __init__(self, model_name='abs_auto_encoder'):
+        super(AbsAutoEncoder, self).__init__(model_name)
         self.encoder = nn.Sequential(
-            SpatiallySeparableConvBlock(in_channels=3, out_channels=128, kernel_size=7, padding=3),
+            ConvBlock(in_channels=3, out_channels=128, kernel_size=7, padding=3),
             ConvBlock(in_channels=128, out_channels=32, kernel_size=5, padding=2),
             ConvBlock(in_channels=32, out_channels=16, kernel_size=3, padding=1),
         )
