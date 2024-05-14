@@ -1,3 +1,4 @@
+from src.modeling.abs_ae import AbsAutoEncoder
 from src.modeling.ddulaev_ae import DDulaevAutoEncoder
 from src.modeling.base_ae import BaseAutoEncoder
 from src.modeling.ln_gelu_ae import LNAutoEncoder
@@ -16,6 +17,7 @@ MODEL_DICT = {
     "gelu_ae": GELUAutoEncoder,
     "residual_ae": ResAutoEncoder,
     "ddulaev_ae": DDulaevAutoEncoder,
+    "abs_ae": AbsAutoEncoder,
 }
 
 
